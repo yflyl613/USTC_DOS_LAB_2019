@@ -1,0 +1,83 @@
+DATA SEGMENT
+    N DB ?
+    MATRIX DW 81 DUP(?)
+    
+DATA ENDS
+
+CODE SEGMENT
+    ASSUME CS:CODE,DS:DATA
+START:
+    MOV AX,DATA
+    MOV DS,AX
+    
+    XOR AX,AX
+    MOV AH,01H
+    INT 21H
+    SUB AX,30H          ;n in AX
+    MOV N,AL
+    AND AX,0FH
+    MOV CX,AX
+    MUL CX              ;n^2 in CX
+    MOV CX,AX
+
+    MOV DL,0DH
+    MOV AH,02H
+    INT 21H
+    MOV DL,0AH
+    MOV AH,02H
+    INT 21H   ;换行输出
+
+    XOR DI,DI
+    MOV AX,00H
+SQUARE:
+    INC AX
+    AAA
+    MOV BX,AX
+    ADD BX,3030H 
+    MOV MATRIX[DI],BX
+    ADD DI,02H
+    LOOP SQUARE
+
+    XOR DI,DI
+    XOR CX,CX
+PRINT:
+    MOV SI,CX
+    INC SI
+    XOR AX,AX
+    MOV AL,N
+    MUL CL
+    SHL AX,1
+    MOV DI,AX
+CONTINUE:
+    MOV BX,MATRIX[DI]
+    CMP BH,30H
+    JZ SINGLE
+    MOV DL,BH
+    MOV AH,02H
+    INT 21H
+SINGLE:
+    MOV DL,BL
+    MOV AH,02H
+    INT 21H
+    MOV DL,20h
+    MOV AH,02H
+    INT 21H
+    ADD DI,02H
+    DEC SI
+    JNZ CONTINUE
+
+    MOV DL,0DH
+    MOV AH,02H
+    INT 21H
+    MOV DL,0AH
+    MOV AH,02H
+    INT 21H   ;换行输出
+
+    INC CX
+    CMP CL,N
+    JL PRINT
+EXIT:
+    MOV AX,4C00H
+    INT 21H
+CODE ENDS
+END START

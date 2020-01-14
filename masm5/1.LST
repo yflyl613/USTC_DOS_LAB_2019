@@ -1,0 +1,47 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/23/19 19:46:08
+                                                             Page     1-1
+
+
+ 0000				DATA	SEGMENT COMMON 
+ 0000  3031				AREA1	DW  3031H 
+ = 0020					COM_REG=20H 
+ 0002				DATA	ENDS 
+				 
+ 0002				DATA	SEGMENT COMMON 
+ 0002  ????				BUF0	DW  ? 
+ 0004  ????				BUF1	DW  ? 
+ 0006				DATA	ENDS 
+				 
+				END 
+Microsoft (R) Macro Assembler Version 5.00                  12/23/19 19:46:08
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+DATA . . . . . . . . . . . . . .  	0006	PARA	COMMON	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+AREA1  . . . . . . . . . . . . .  	L WORD	0000	DATA
+
+BUF0 . . . . . . . . . . . . . .  	L WORD	0002	DATA
+BUF1 . . . . . . . . . . . . . .  	L WORD	0004	DATA
+
+COM_REG  . . . . . . . . . . . .  	NUMBER	0020	
+
+@FILENAME  . . . . . . . . . . .  	TEXT  0		
+
+
+     11 Source  Lines
+     11 Total   Lines
+      7 Symbols
+
+  51320 + 465224 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
